@@ -108,15 +108,6 @@ export default function App() {
           </ul>
         </div>
 
-        <div className="rounded-2xl shadow-md bg-white dark:bg-gray-900 p-6">
-          <h2 className="text-2xl font-bold mb-2">📝 Blog Highlights</h2>
-          <ul className="list-disc pl-5 text-blue-600 dark:text-blue-400">
-            <li><a href="#">Fine-Tuning for Low-Light Detection</a></li>
-            <li><a href="#">Combining ROS2 + PyTorch for Real-Time</a></li>
-            <li><a href="#">Scalable DL Segmentation Pipeline on AWS</a></li>
-          </ul>
-        </div>
-
         <div className="rounded-2xl shadow-md bg-white dark:bg-gray-900 p-6 text-center">
           <h2 className="text-2xl font-bold mb-2">📬 Contact</h2>
           <p className="text-gray-700 dark:text-gray-300">📧 <a href="mailto:Karthikps681@gmail.com" className="text-blue-600 dark:text-blue-400">Karthikps681@gmail.com</a></p>
