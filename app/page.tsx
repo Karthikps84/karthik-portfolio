@@ -186,9 +186,9 @@ export default function Portfolio() {
             </motion.div>
 
             {/* Main Greeting */}
-            <motion.h1 variants={fadeInUp} className="text-5xl sm:text-7xl font-semibold tracking-tight text-white leading-[1.1]">
-              Hey, I'm <br className="hidden sm:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold">
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.2]">
+              Hey, I'm <br className="hidden lg:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold whitespace-nowrap">
                 KARTHIK PALYAKERE
               </span>
             </motion.h1>
@@ -386,7 +386,7 @@ export default function Portfolio() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-12">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-[12vw] sm:text-[8vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase">
+            <h2 className="text-6xl sm:text-7xl md:text-8xl font-black leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase">
               Let's Talk
             </h2>
             <p className="text-xl md:text-2xl text-slate-400 mt-6 max-w-2xl mx-auto">
