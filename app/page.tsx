@@ -6,7 +6,7 @@ import {
   Download, MapPin, Mail, Phone, ExternalLink, Cpu, 
   BrainCircuit, Network, Layers, Target, BoxSelect, 
   Microscope, Code2, Globe, Github, Linkedin, Instagram, 
-  Twitter, GraduationCap, Camera
+  Twitter, GraduationCap, Camera, ArrowUp
 } from "lucide-react";
 
 // --- ENHANCED DATA ---
@@ -189,7 +189,7 @@ export default function Portfolio() {
             <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.2]">
               Hey, I'm <br className="hidden lg:block"/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold whitespace-nowrap">
-                KARTHIK PALYAKERE
+                KARTHIK PALYAKERE SURESH
               </span>
             </motion.h1>
 
@@ -411,8 +411,16 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="pt-16 text-slate-600 text-sm font-mono tracking-widest uppercase">
-            © {new Date().getFullYear()} Karthik Palyakere Suresh.
+          <div className="pt-24 flex flex-col items-center gap-8">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] border border-slate-800 text-slate-400 hover:text-white hover:border-[#a8b1ff] transition-all font-mono text-sm tracking-widest uppercase group shadow-lg"
+            >
+              Back to Top <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
+            </button>
+            <div className="text-slate-600 text-sm font-mono tracking-widest uppercase">
+              © {new Date().getFullYear()} Karthik Palyakere Suresh.
+            </div>
           </div>
         </div>
       </section>
