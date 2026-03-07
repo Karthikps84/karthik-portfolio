@@ -6,7 +6,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Karthik Palyakere Suresh | Computer Vision and GenAI Researcher",
+  title: "Karthik Palyakere Suresh - Computer Vision and GenAI Researcher",
   description: "Portfolio of Karthik Palyakere Suresh, Computer Vision and GenAI Researcher.",
 };
 
