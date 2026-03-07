@@ -241,7 +241,7 @@ export default function Portfolio() {
               className="absolute top-8 -left-4 sm:-left-12 z-20 px-5 py-3 rounded-xl bg-[#111827] border border-slate-700 shadow-2xl flex items-center gap-3"
             >
               <div className="w-3 h-3 rounded-full bg-[#8b5cf6]" />
-              <span className="text-white font-bold tracking-wide">AI / ML Engineer</span>
+              <span className="text-white font-bold tracking-wide">CV / ML Engineer</span>
             </motion.div>
           </motion.div>
         </div>
