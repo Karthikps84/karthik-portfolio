@@ -186,10 +186,10 @@ export default function Portfolio() {
             </motion.div>
 
             {/* Main Greeting */}
-            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.2]">
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-none">
               Hey, I'm <br className="hidden lg:block"/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold whitespace-nowrap">
-                KARTHIK PALYAKERE SURESH
+                KARTHIK PALYAKERE <br /> SURESH
               </span>
             </motion.h1>
 
