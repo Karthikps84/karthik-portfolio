@@ -16,7 +16,7 @@ const enhancedData = {
     headline: "Architecting Next-Gen Vision & Robotics Systems.",
     sub: "Full-Stack Machine Learning & Computer Vision Engineer",
     // Replace this URL with "/profile.jpg" once you add your photo to the public folder
-    photo: "?auto=format&fit=crop&q=80&w=1000", 
+    photo: "/profile.JPG?auto=format&fit=crop&q=80&w=1000", 
   },
   about: {
     title: "Beyond the Code.",
@@ -27,10 +27,9 @@ const enhancedData = {
     ]
   },
   socials:[
-    { name: "LinkedIn", url: "https://linkedin.com/in/your-profile", icon: <Linkedin className="w-5 h-5" /> },
-    { name: "GitHub", url: "https://github.com/your-username", icon: <Github className="w-5 h-5" /> },
-    { name: "Twitter / X", url: "https://twitter.com/your-handle", icon: <Twitter className="w-5 h-5" /> },
-    { name: "Instagram", url: "https://instagram.com/your-handle", icon: <Instagram className="w-5 h-5" /> },
+    { name: "LinkedIn", url: "https://linkedin.com/in/karthikps84", icon: <Linkedin className="w-5 h-5" /> },
+    { name: "GitHub", url: "https://github.com/karthikps84", icon: <Github className="w-5 h-5" /> },
+    { name: "Instagram", url: "https://instagram.com/karthikps31", icon: <Instagram className="w-5 h-5" /> },
   ],
   metrics:[
     { label: "Vision Inference", value: "30 FPS", desc: "Real-time edge multi-sensor" },
@@ -81,7 +80,7 @@ const enhancedData = {
       company: "Merck Group KGaA",
       role: "Data Scientist Intern (Computer Vision)",
       dates: "March 2025 – Current",
-      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1000",
+      image: "https://kce.ac.in/new/wp-content/uploads/2023/08/Emerging-Trends-in-Material-Science-From-Nanotechnology-to-Advanced-Composites-scaled.jpg?auto=format&fit=crop&q=80&w=1000",
       bullets:["Fine-tuning heavy Foundation Models (SAM2, SAM3, Mask R-CNN) on complex, high-res SEM/TEM microscopy datasets.", "Engineering synthetic data generation pipelines, successfully reducing model overfitting by 35%.", "Optimizing massive computer vision models for low-latency inference using ONNX Runtime.", "Building production-grade, containerized training workflows (Docker/PyTorch)."]
     },
     {
