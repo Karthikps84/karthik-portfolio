@@ -16,7 +16,7 @@ const enhancedData = {
     headline: "Architecting Next-Gen Vision & Robotics Systems.",
     sub: "Full-Stack Machine Learning & Computer Vision Engineer",
     // Replace this URL with "/profile.jpg" once you add your photo to the public folder
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000", 
+    photo: "?auto=format&fit=crop&q=80&w=1000", 
   },
   about: {
     title: "Beyond the Code.",
