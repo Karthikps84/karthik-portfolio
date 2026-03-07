@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* Forces the dark mode theme we designed */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #020617;
+  color: #f8fafc;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
