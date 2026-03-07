@@ -111,7 +111,7 @@ const enhancedData = {
       company: "Merck Group KGaA",
       role: "Data Scientist Intern (Computer Vision)",
       dates: "March 2025 – Current",
-      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1000",
+      image: "https://kce.ac.in/new/wp-content/uploads/2023/08/Emerging-Trends-in-Material-Science-From-Nanotechnology-to-Advanced-Composites-scaled.jpg?auto=format&fit=crop&q=80&w=1000",
       bullets:[
         "Fine-tuning heavy Foundation Models (SAM2, SAM3, Mask R-CNN) on complex, high-res SEM/TEM microscopy datasets.",
         "Engineering synthetic data generation pipelines, successfully reducing model overfitting by 35%.",
