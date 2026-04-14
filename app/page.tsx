@@ -47,7 +47,7 @@ const enhancedData = {
     {
       degree: "M.Sc. Computer Science (AI & Computer Vision)",
       institution: "Technical University of Kaiserslautern, Germany",
-      dates: "Oct 2022 – March 2026",
+      dates: "Oct 2022 – April 2026",
       bullets:["Relevant Coursework: Machine Learning Algorithms, Deep Learning, Image Processing, NLP, Web Mining"]
     },
     {
