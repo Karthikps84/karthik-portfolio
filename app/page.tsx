@@ -182,7 +182,7 @@ export default function Portfolio() {
             {/* Availability Badge */}
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#111827] border border-slate-800 shadow-xl">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-slate-200 text-sm font-semibold tracking-wide">Available for opportunities</span>
+              <span className="text-slate-200 text-sm font-semibold tracking-wide">Available for Full-time opportunities</span>
             </motion.div>
 
             {/* Main Greeting */}
