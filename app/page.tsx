@@ -12,7 +12,7 @@ import {
 // --- ENHANCED DATA ---
 const enhancedData = {
   hero: {
-    photo: "/profile.JPG?auto=format&fit=crop&q=80&w=1000", // Update with /profile.jpg
+    photo: "/profile.PNG?auto=format&fit=crop&q=80&w=1000", // Update with /profile.jpg
   },
 
     about: {
