@@ -15,12 +15,12 @@ const enhancedData = {
     photo: "/profile.PNG?auto=format&fit=crop&q=80&w=1000", // Update with /profile.jpg
   },
 
-    about: {
+  about: {
     title: "Beyond the Code.",
     paragraphs:[
       "I am a Machine Learning Researcher and Engineer based in Mannheim, Germany, driven by the challenge of teaching machines to understand and interact with the physical world.",
-      "My journey started with a deep curiosity for Artificial Intelligence and has evolved into a specialized focus on Computer Vision, Multimodal Learning, and Foundation Models. I don't just train models in a vacuum; I build end-to-end architectures—from custom hardware sensor integration (IDS cameras, ROS2) to deploying optimized algorithms (ONNX, TensorRT) on the edge.",
-      "Whether it's writing a master thesis on nanoparticle segmentation or publishing peer-reviewed research at ICCV 2025 on light-agnostic perception, my goal remains the same: bridging the gap between cutting-edge academic research and robust, scalable industrial applications."
+      "My journey started with a deep curiosity for Artificial Intelligence and has evolved into a specialized focus on Computer Vision, Multimodal Learning, Generative AI, and Foundation Models. I don't just train models in a vacuum; I build end-to-end architectures—from custom hardware sensor integration (IDS cameras, ROS2) to deploying optimized algorithms (ONNX, TensorRT) on the edge.",
+      "Whether it's publishing peer-reviewed research at ICCV 2025 on light-agnostic perception, architecting RAG systems for enterprise applications, or building production ML pipelines at Merck, my goal remains the same: bridging the gap between cutting-edge academic research and robust, scalable industrial applications."
     ]
   },
 
@@ -45,9 +45,9 @@ const enhancedData = {
   ],
   education:[
     {
-      degree: "M.Sc. Computer Science (AI & Computer Vision)",
+      degree: "M.Sc. Computer Science (AI & Computer Vision Specialization)",
       institution: "Technical University of Kaiserslautern, Germany",
-      dates: "Oct 2022 – April 2026",
+      dates: "Oct 2022 – July 2026",
       bullets:["Relevant Coursework: Machine Learning Algorithms, Deep Learning, Image Processing, NLP, Web Mining"]
     },
     {
@@ -60,17 +60,17 @@ const enhancedData = {
   experience:[
     {
       company: "Merck Group KGaA",
-      role: "Data Scientist Intern (Computer Vision)",
-      dates: "March 2025 – Current",
+      role: "Data Scientist Intern (Computer Vision & GenAI)",
+      dates: "March 2025 – December 2025",
       image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Fine-tuning heavy Foundation Models (SAM2, SAM3, Mask R-CNN) on complex, high-res SEM/TEM microscopy datasets.", "Engineering synthetic data generation pipelines, successfully reducing model overfitting by 35%.", "Optimizing massive computer vision models for low-latency inference using ONNX Runtime.", "Building production-grade, containerized training workflows (Docker/PyTorch)."]
+      bullets:["Architected and deployed end-to-end ML pipelines on AWS infrastructure, implementing containerized model serving with Docker and optimizing inference latency by 40% for high-resolution microscopy data.", "Fine-tuned and deployed deep learning models (Mask R-CNN, YOLOv11, SAM2) achieving 20% improvement in detection accuracy through systematic hyperparameter optimization and evaluation.", "Engineered synthetic data generation pipelines to improve generalization and reduce overfitting by 35% on complex SEM/TEM datasets.", "Prototyped and integrated LLM-based approaches for information extraction, implementing Retrieval-Augmented Generation (RAG) systems using embeddings and vector similarity search.", "Built scalable training and evaluation workflows in Python and PyTorch using Docker with CI/CD automation, reducing deployment cycles by 50%."]
     },
     {
-      company: "DFKI",
+      company: "DFKI (Deutsches Forschungszentrum für Künstliche Intelligenz)",
       role: "AI Research Assistant / Robotics Perception",
-      dates: "July 2023 – Feb 2025",
+      dates: "July 2023 – February 2025",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Engineered a vision-guided mobile robotic cell for automated vehicle chassis assembly and screwdriving.", "Integrated real-time process control with a Digital Twin platform, enabling highly accurate trajectory optimization.", "Developed custom camera drivers (IDS Peak SDK, OpenCV) for high-speed multi-sensor data capture.", "Pioneered light-agnostic vision pipelines (TorchAdapt), culminating in an accepted peer-reviewed publication at ICCV 2025."]
+      bullets:["Designed and deployed a real-time multi-sensor perception system for robotic platforms, achieving 92% detection accuracy in autonomous scenarios.", "Developed ROS2-based perception nodes for synchronized camera streams and object detection on Jetson embedded hardware.", "Implemented low-light and degraded-vision enhancement pipelines, improving object detection mAP50 by 5% in challenging environments.", "Optimized perception models for real-time inference, focusing on robustness, latency, and deployment constraints.", "Published peer-reviewed research at ICCV 2025 on light-agnostic perception systems (TorchAdapt)."]
     }
   ],
   projects:[
@@ -89,18 +89,18 @@ const enhancedData = {
       icon: <Microscope className="text-teal-400" />
     },
     {
+      title: "Enterprise RAG System",
+      category: "Generative AI & LLMs",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
+      bullets:["Engineered scalable Retrieval-Augmented Generation (RAG) pipelines using advanced embedding models and vector similarity search.", "Integrated LLM APIs with custom retrieval strategies to maximize answer consistency and minimize hallucinations.", "Optimized system architecture for production deployment with FastAPI and Docker containerization."],
+      icon: <Network className="text-purple-400" />
+    },
+    {
       title: "IDS Multi-Camera Edge Pipeline",
       category: "Hardware Integration & Robotics",
       image: "https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&q=80&w=1000",
       bullets:["Built a robust integration using the IDS Peak SDK and OpenCV for synchronized hardware-level video streaming.", "Engineered multi-threaded image capture for industrial quality control cells."],
       icon: <Camera className="text-amber-400" />
-    },
-    {
-      title: "Enterprise RAG Architecture",
-      category: "Generative AI",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Engineered scalable RAG pipelines using advanced embedding models and vector similarity search.", "Optimized retrieval strategies to maximize LLM answer consistency and minimize hallucinations."],
-      icon: <Network className="text-purple-400" />
     }
   ]
 };
