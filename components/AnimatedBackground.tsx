@@ -1,18 +1,58 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+// Hoisted out of the effect: the React Compiler cannot optimize a component
+// that declares a class inline.
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+
+  constructor(canvasWidth: number, canvasHeight: number) {
+    this.x = Math.random() * canvasWidth;
+    this.y = Math.random() * canvasHeight;
+    this.vx = (Math.random() - 0.5) * 0.5; // Slow drifting
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = Math.random() * 1.5 + 0.5;
+  }
+
+  update(canvasWidth: number, canvasHeight: number) {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce off edges
+    if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
+    if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(168, 177, 255, 0.45)"; // Faint periwinkle, matches the site accent
+    ctx.fill();
+  }
+}
 
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  },[]);
+  const subscribe = useCallback((onChange: () => void) => {
+    const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  // Server render assumes motion is allowed; the canvas only mounts on the client anyway.
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
+    () => false
+  );
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -28,38 +68,6 @@ export default function AnimatedBackground() {
     // Cap particles based on screen width for performance
     const particleCount = window.innerWidth < 768 ? 25 : 60;
     const connectionDistance = 120;
-
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-
-      constructor(canvasWidth: number, canvasHeight: number) {
-        this.x = Math.random() * canvasWidth;
-        this.y = Math.random() * canvasHeight;
-        this.vx = (Math.random() - 0.5) * 0.5; // Slow drifting
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 1.5 + 0.5;
-      }
-
-      update(canvasWidth: number, canvasHeight: number) {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Bounce off edges
-        if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
-        if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
-      }
-
-      draw(ctx: CanvasRenderingContext2D) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; // Faint slate-400
-        ctx.fill();
-      }
-    }
 
     const init = () => {
       canvas.width = window.innerWidth;
@@ -83,7 +91,7 @@ export default function AnimatedBackground() {
             ctx.lineTo(particles[j].x, particles[j].y);
             // Opacity scales with distance
             const opacity = 1 - distance / connectionDistance;
-            ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.15})`;
+            ctx.strokeStyle = `rgba(168, 177, 255, ${opacity * 0.18})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -112,11 +120,12 @@ export default function AnimatedBackground() {
   }, [prefersReducedMotion]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+    <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#121a2b] via-[#0a0f18] to-black">
       {!prefersReducedMotion && (
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full opacity-60"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full opacity-70"
         />
       )}
     </div>

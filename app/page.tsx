@@ -1,117 +1,206 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { 
-  Download, MapPin, Mail, Phone, ExternalLink, Cpu, 
-  BrainCircuit, Network, Layers, Target, BoxSelect, 
-  Microscope, Code2, Globe, Github, Linkedin, Instagram, 
-  Twitter, GraduationCap, Camera, ArrowUp
+import {
+  Download, Mail, Cpu, BrainCircuit, Network, Layers, Target,
+  Microscope, Code2, Globe, Github, Linkedin, Instagram,
+  GraduationCap, Camera, ArrowUp, MapPin, BookOpen, Award,
+  Bot, Database, Gauge
 } from "lucide-react";
+
 
 // --- ENHANCED DATA ---
 const enhancedData = {
   hero: {
-    photo: "/profile.PNG?auto=format&fit=crop&q=80&w=1000", // Update with /profile.jpg
+    photo: "/profile.PNG",
+    location: "Mannheim, Germany",
+    tagline: "AI/ML Engineer — Computer Vision, Generative AI & Agentic Systems",
   },
 
   about: {
     title: "Beyond the Code.",
-    paragraphs:[
-      "I am a Machine Learning Researcher and Engineer based in Mannheim, Germany, driven by the challenge of teaching machines to understand and interact with the physical world.",
-      "My journey started with a deep curiosity for Artificial Intelligence and has evolved into a specialized focus on Computer Vision, Multimodal Learning, Generative AI, and Foundation Models. I don't just train models in a vacuum; I build end-to-end architectures—from custom hardware sensor integration (IDS cameras, ROS2) to deploying optimized algorithms (ONNX, TensorRT) on the edge.",
-      "Whether it's publishing peer-reviewed research at ICCV 2025 on light-agnostic perception, architecting RAG systems for enterprise applications, or building production ML pipelines at Merck, my goal remains the same: bridging the gap between cutting-edge academic research and robust, scalable industrial applications."
-    ]
+    paragraphs: [
+      "I am an AI/ML Engineer and Data Scientist based in Mannheim, Germany, with 2+ years building applied machine learning, computer vision, generative AI and retrieval-based systems across research and enterprise environments.",
+      "My work spans the full stack of modern AI: fine-tuning vision foundation models (SAM2, SAM3, CLIP, DINO, YOLO, Mask R-CNN), architecting multimodal Agentic RAG platforms with LangGraph and LangChain, and shipping all of it as containerized services on AWS with CI/CD and continuous evaluation.",
+      "I don't train models in a vacuum. I build end-to-end architectures — from hardware sensor integration (IDS cameras, ROS2, Jetson) to quantized, TensorRT-optimized inference on the edge — and I measure them on latency, throughput, memory and prediction quality, not accuracy alone.",
+      "Published at ICCV 2025 on light-agnostic real-time perception (TorchAdapt). Currently focused on semantic retrieval, knowledge grounding, context engineering, and AI agents operating over complex enterprise data.",
+    ],
   },
 
-  socials:[
+  socials: [
     { name: "LinkedIn", url: "https://linkedin.com/in/karthikps84", icon: <Linkedin size={20} /> },
     { name: "GitHub", url: "https://github.com/karthikps84", icon: <Github size={20} /> },
     { name: "Instagram", url: "https://instagram.com/karthikps31", icon: <Instagram size={20} /> },
   ],
-  metrics:[
-    { label: "Vision Inference", value: "30 FPS", desc: "Real-time edge multi-sensor" },
-    { label: "mAP50 Boost", value: "15%", desc: "In low-light (TorchAdapt)" },
-    { label: "Thesis mAP", value: "91.3%", desc: "YOLOv11L on SEM dataset" },
-    { label: "Automation Acc.", value: "92%", desc: "Robotic perception control" },
+
+  metrics: [
+    { label: "Inference Latency", value: "40%", desc: "Reduction on AWS pipelines at Merck" },
+    { label: "Deployment Cycles", value: "50%", desc: "Faster via CI/CD automation" },
+    { label: "mAP50 Boost", value: "15%", desc: "Low-light detection (TorchAdapt)" },
+    { label: "Edge Inference", value: "30 FPS", desc: "4 synchronized camera streams" },
   ],
-  skills:[
-    { category: "Computer Vision", icon: <Target className="w-6 h-6 text-rose-400" />, items:["Object Detection", "Instance Segmentation", "Semantic Segmentation", "Image Classification", "Low-light Vision", "2D/3D Vision"] },
-    { category: "GenAI & Multimodal", icon: <BrainCircuit className="w-6 h-6 text-purple-400" />, items:["LLMs", "RAG", "Embeddings", "Vector Databases", "Prompt Engineering", "Synthetic Data", "SAM2", "CLIP"] },
-    { category: "Frameworks & Tools", icon: <Layers className="w-6 h-6 text-blue-400" />, items:["PyTorch", "TensorFlow", "Hugging Face", "OpenCV", "Detectron2", "NumPy"] },
-    { category: "Deployment & MLOps", icon: <Cpu className="w-6 h-6 text-emerald-400" />, items:["ONNX Runtime", "TensorRT", "Docker", "FastAPI", "ROS2", "AWS MLOps", "CI/CD"] },
-    { category: "Programming", icon: <Code2 className="w-6 h-6 text-amber-400" />, items:["Python", "C++", "C", "Bash", "SQL"] },
-    { category: "Languages", icon: <Globe className="w-6 h-6 text-teal-400" />, items:["English (C2)", "German (B1)"] }
+
+  skills: [
+    { category: "Generative AI & Retrieval", icon: <BrainCircuit className="w-6 h-6 text-purple-400" />, items: ["RAG", "Agentic RAG", "Multimodal RAG", "LLMs", "Embeddings", "Vector Databases", "Semantic Retrieval", "Hybrid Search", "Context Engineering", "Prompt Engineering", "Knowledge Grounding"] },
+    { category: "Agentic AI", icon: <Bot className="w-6 h-6 text-indigo-400" />, items: ["AI Agents", "Multi-Agent Systems", "LangChain", "LangGraph", "Agentic Orchestration", "Agentic Reasoning", "Reranking"] },
+    { category: "Computer Vision & Multimodal", icon: <Target className="w-6 h-6 text-rose-400" />, items: ["Object Detection", "Instance Segmentation", "Semantic Segmentation", "Multimodal Learning", "CLIP", "DINO", "SAM2", "SAM3", "Mask R-CNN", "YOLO", "2D/3D Vision"] },
+    { category: "ML & Deep Learning", icon: <Layers className="w-6 h-6 text-blue-400" />, items: ["PyTorch", "TensorFlow", "scikit-learn", "CNNs", "Vision Transformers", "Transfer Learning", "Model Fine-Tuning", "Model Evaluation", "Statistical Analysis"] },
+    { category: "Knowledge & Semantic Systems", icon: <Database className="w-6 h-6 text-cyan-400" />, items: ["Knowledge Representation", "Semantic Modeling", "Metadata", "Knowledge Graphs", "Graph Databases", "RDF Concepts", "Ontology Fundamentals"] },
+    { category: "MLOps & Cloud", icon: <Cpu className="w-6 h-6 text-emerald-400" />, items: ["Docker", "FastAPI", "AWS (EC2, S3, Lambda)", "CI/CD", "Model Monitoring", "ONNX Runtime", "TensorRT", "OpenVINO", "CUDA"] },
+    { category: "Programming & Data", icon: <Code2 className="w-6 h-6 text-amber-400" />, items: ["Python", "SQL", "C++", "C", "Git", "Linux", "Bash", "ROS2", "Data Processing"] },
+    { category: "Languages", icon: <Globe className="w-6 h-6 text-teal-400" />, items: ["English (C2, Fluent)", "German (B1, Actively Learning)"] },
   ],
-  education:[
+
+  education: [
     {
       degree: "M.Sc. Computer Science (AI & Computer Vision Specialization)",
       institution: "Technical University of Kaiserslautern, Germany",
-      dates: "Oct 2022 – July 2026",
-      bullets:["Relevant Coursework: Machine Learning Algorithms, Deep Learning, Image Processing, NLP, Web Mining"]
+      dates: "Apr 2023 – Sep 2026",
+      bullets: ["Relevant Coursework: Machine Learning Algorithms, Deep Learning, Image Processing, NLP, Web Mining"],
     },
     {
       degree: "B.E. Computer Science",
       institution: "Nitte Meenakshi Institute of Technology, Bangalore, India",
       dates: "Jul 2018 – Aug 2022",
-      bullets: ["Relevant Coursework: Machine Learning, Artificial Intelligence"]
-    }
+      bullets: ["Relevant Coursework: Machine Learning, Artificial Intelligence"],
+    },
   ],
-  experience:[
+
+  experience: [
     {
-      company: "Merck Group KGaA",
-      role: "Data Scientist Intern (Computer Vision & GenAI)",
-      dates: "March 2025 – December 2025",
-      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Architected and deployed end-to-end ML pipelines on AWS infrastructure, implementing containerized model serving with Docker and optimizing inference latency by 40% for high-resolution microscopy data.", "Fine-tuned and deployed deep learning models (Mask R-CNN, YOLOv11, SAM2) achieving 20% improvement in detection accuracy through systematic hyperparameter optimization and evaluation.", "Engineered synthetic data generation pipelines to improve generalization and reduce overfitting by 35% on complex SEM/TEM datasets.", "Prototyped and integrated LLM-based approaches for information extraction, implementing Retrieval-Augmented Generation (RAG) systems using embeddings and vector similarity search.", "Built scalable training and evaluation workflows in Python and PyTorch using Docker with CI/CD automation, reducing deployment cycles by 50%."]
+      company: "Merck Group KGaA, Darmstadt",
+      role: "Data Scientist Intern / Werkstudent",
+      dates: "March 2025 – Sep 2026",
+      accent: "from-emerald-500/20 via-teal-500/10 to-transparent",
+      icon: <Microscope className="w-7 h-7 text-emerald-300" />,
+      bullets: [
+        "Developed and evaluated machine learning and deep learning models for high-resolution SEM and TEM microscopy data, working with structured and unstructured scientific datasets.",
+        "Fine-tuned and evaluated foundation and computer vision models including Mask R-CNN, YOLOv11, SAM2 and SAM3 for instance segmentation and image understanding.",
+        "Architected end-to-end, scalable ML pipelines on AWS with containerized model serving using Docker, improving inference latency by 40% for high-resolution imagery.",
+        "Engineered production-ready AI workflows with CI/CD automation, reducing deployment cycles by 50% and enabling continuous model evaluation through feedback loops.",
+        "Prototyped LLM-based information extraction and knowledge retrieval workflows using RAG, embeddings, vector similarity search and semantic retrieval.",
+        "Developed synthetic data generation pipelines that improved model generalization and reduced overfitting by 35%, addressing limited labelled data challenges.",
+        "Evaluated model performance across latency, throughput, memory consumption and prediction quality, including mixed-precision inference benchmarking against FP32 baselines.",
+        "Collaborated with interdisciplinary research, engineering and domain teams in agile environments, translating research problems into scalable AI solutions.",
+      ],
     },
     {
-      company: "DFKI (Deutsches Forschungszentrum für Künstliche Intelligenz)",
-      role: "AI Research Assistant / Robotics Perception",
-      dates: "July 2023 – February 2025",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Designed and deployed a real-time multi-sensor perception system for robotic platforms, achieving 92% detection accuracy in autonomous scenarios.", "Developed ROS2-based perception nodes for synchronized camera streams and object detection on Jetson embedded hardware.", "Implemented low-light and degraded-vision enhancement pipelines, improving object detection mAP50 by 5% in challenging environments.", "Optimized perception models for real-time inference, focusing on robustness, latency, and deployment constraints.", "Published peer-reviewed research at ICCV 2025 on light-agnostic perception systems (TorchAdapt)."]
-    }
+      company: "DFKI – German Research Center for AI, Kaiserslautern",
+      role: "Research Assistant",
+      dates: "July 2023 – Feb 2025",
+      accent: "from-blue-500/20 via-indigo-500/10 to-transparent",
+      icon: <Network className="w-7 h-7 text-blue-300" />,
+      bullets: [
+        "Designed and deployed a real-time multi-sensor perception system for robotic platforms, achieving 92% detection accuracy in autonomous scenarios.",
+        "Developed ROS2-based perception nodes for synchronized camera streams and object detection on Jetson embedded hardware, achieving sub-200ms inference latency.",
+        "Implemented low-light and degraded-vision enhancement pipelines, improving object detection mAP50 by 15% in challenging environments.",
+        "Optimized PyTorch models for production deployment, focusing on inference performance, memory efficiency and real-time constraints in resource-limited environments.",
+        "Built modular ML components and scalable data processing pipelines for structured and unstructured sensor data, ensuring robustness and reproducibility across distributed systems.",
+        "Developed monitoring and logging infrastructure for deployed AI services, enabling continuous performance tracking and automated alerting.",
+        "Published peer-reviewed research at ICCV 2025 demonstrating scalable, production-ready perception systems.",
+      ],
+    },
   ],
-  projects:[
+
+  projects: [
+    {
+      title: "Enterprise Multimodal Agentic RAG Platform",
+      category: "Agentic AI & Generative AI",
+      accent: "from-purple-600/25 via-indigo-600/10 to-transparent",
+      bullets: [
+        "Designed a multimodal, multi-agent RAG platform using LangGraph and LangChain to process and retrieve information from documents, images and tables.",
+        "Implemented agentic orchestration and semantic retrieval using LLMs, embeddings, vector databases, hybrid search and reranking.",
+        "Delivered context-aware, grounded and reliable responses over structured and unstructured enterprise data.",
+      ],
+      icon: <Bot className="text-purple-300" />,
+    },
+    {
+      title: "Real-Time Multi-Camera Perception System",
+      category: "Robotics & Edge Deployment",
+      accent: "from-amber-500/25 via-orange-600/10 to-transparent",
+      bullets: [
+        "Built a real-time perception pipeline processing 4 camera streams at 30 FPS with object detection, DeepSORT tracking and ROS2 communication.",
+        "Deployed on Jetson embedded hardware with GPU-optimized model serving and sub-200ms end-to-end latency.",
+      ],
+      icon: <Camera className="text-amber-300" />,
+    },
     {
       title: "TorchAdapt: Light-Agnostic Perception (ICCV 2025)",
-      category: "Core CV Research & Open Source",
-      image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Published real-time light-agnostic visual perception research evaluated across Exdark, LIS, and Darkface datasets.", "Architected and benchmarked YOLOv3, RetinaNet, and RTMDet-tiny pipelines.", "Achieved 80.1 mAP50 on dark environments, proving high robustness for autonomous nighttime navigation."],
-      icon: <Target className="text-rose-400" />
+      category: "Peer-Reviewed CV Research",
+      accent: "from-rose-500/25 via-pink-600/10 to-transparent",
+      bullets: [
+        "Published real-time light-agnostic visual perception research evaluated on Exdark, LIS and Darkface datasets.",
+        "Engineered a U-Net-based enhancement pipeline integrated with RTMDet-tiny, YOLOv3 and DeepLabV3+, improving mAP50 by 15%.",
+        "Benchmarked on dark-image datasets, reaching 92% accuracy through systematic optimization.",
+      ],
+      icon: <Target className="text-rose-300" />,
+    },
+    {
+      title: "CLIP–DINO Hybrid Vision Transformer",
+      category: "Multimodal Foundation Models",
+      accent: "from-cyan-500/25 via-sky-600/10 to-transparent",
+      bullets: [
+        "Developed a hybrid vision foundation model combining self-supervised (DINO) and language-aligned (CLIP) representations for zero-shot object recognition.",
+        "Deployed as a containerized inference service using FastAPI and Docker with automated CI/CD, achieving sub-200ms response time.",
+      ],
+      icon: <Layers className="text-cyan-300" />,
     },
     {
       title: "Master Thesis: Automated SEM Nanoparticle Segmentation",
       category: "Deep Learning & Microscopy",
-      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Curated a heterogeneous dataset of 1,327 SEM images to benchmark YOLOv11L-Seg, Mask R-CNN, and SAM2.", "Achieved 91.3% mAP with YOLOv11L, outperforming foundational models and proving high resilience to domain shifts.", "Developed an end-to-end automated pipeline for particle size distribution and morphology analysis."],
-      icon: <Microscope className="text-teal-400" />
+      accent: "from-teal-500/25 via-emerald-600/10 to-transparent",
+      bullets: [
+        "Curated a heterogeneous dataset of 1,327 SEM images to benchmark YOLOv11L-Seg, Mask R-CNN and SAM2.",
+        "Achieved 91.3% mAP with YOLOv11L, outperforming foundation models and proving resilience to domain shifts.",
+        "Developed an end-to-end automated pipeline for particle size distribution and morphology analysis.",
+      ],
+      icon: <Microscope className="text-teal-300" />,
     },
     {
-      title: "Enterprise RAG System",
-      category: "Generative AI & LLMs",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Engineered scalable Retrieval-Augmented Generation (RAG) pipelines using advanced embedding models and vector similarity search.", "Integrated LLM APIs with custom retrieval strategies to maximize answer consistency and minimize hallucinations.", "Optimized system architecture for production deployment with FastAPI and Docker containerization."],
-      icon: <Network className="text-purple-400" />
+      title: "CNN Quantization and Optimization Pipeline",
+      category: "Model Optimization & MLOps",
+      accent: "from-violet-500/25 via-fuchsia-600/10 to-transparent",
+      bullets: [
+        "Applied Post-Training Quantization (PTQ) and Quantization-Aware Training (QAT) with mixed-precision strategies (INT8/FP16).",
+        "Achieved 2-3x inference speedup with controlled accuracy degradation, benchmarked against FP32 baselines.",
+      ],
+      icon: <Gauge className="text-violet-300" />,
+    },
+  ],
+
+  publications: [
+    {
+      venue: "ICCV 2025",
+      title: "TorchAdapt: Towards Light-Agnostic Real-Time Visual Perception",
+      note: "Peer-reviewed. Real-time perception robust to arbitrary illumination conditions.",
     },
     {
-      title: "IDS Multi-Camera Edge Pipeline",
-      category: "Hardware Integration & Robotics",
-      image: "https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&q=80&w=1000",
-      bullets:["Built a robust integration using the IDS Peak SDK and OpenCV for synchronized hardware-level video streaming.", "Engineered multi-threaded image capture for industrial quality control cells."],
-      icon: <Camera className="text-amber-400" />
-    }
-  ]
+      venue: "IJSRD, Vol. 7, Issue 6, 2022",
+      title: "Intellectual Interactive System",
+      note: "Peer-reviewed journal publication.",
+    },
+    {
+      venue: "Open Source",
+      title: "Active contributor in multimodal and computer vision research",
+      note: "Ongoing contributions to open multimodal and CV tooling.",
+    },
+  ],
+
+  certifications: [
+    { name: "Oracle Cloud Infrastructure – Generative AI Professional", year: "2025" },
+    { name: "Oracle Cloud Infrastructure – Data Science Professional", year: "2025" },
+  ],
 };
 
 // --- DYNAMIC HERO TEXTS ---
-const rotatingTexts =[
-  "DEBUG > SLEEP 🐛😴",
-  "TRAIN > VALIDATE > DEPLOY 🚀",
-  "COFFEE > C++ > COMPUTER VISION ☕",
-  "PIXELS > PREDICTIONS 🖼️🤖",
-  "TENSORS > STRESS 🧠"
+const rotatingTexts = [
+  "AGENTIC RAG > PLAIN RAG",
+  "TRAIN > EVALUATE > DEPLOY",
+  "PIXELS > PREDICTIONS",
+  "RETRIEVE > GROUND > ANSWER",
+  "TENSORS > STRESS",
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -125,17 +214,12 @@ const staggerContainer: Variants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
-const navItems =["ABOUT", "EXPERIENCE", "EDUCATION", "PROJECTS", "SKILLS"];
+const COPYRIGHT_YEAR = new Date().getFullYear();
+
+const navItems = ["ABOUT", "EXPERIENCE", "PROJECTS", "PUBLICATIONS", "SKILLS", "EDUCATION", "CONTACT"];
 
 export default function Portfolio() {
-  const [loading, setLoading] = useState(true);
   const [textIndex, setTextIndex] = useState(0);
-
-  // Loading Screen Timer
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(timer);
-  },[]);
 
   // Rotating Text Timer
   useEffect(() => {
@@ -143,42 +227,38 @@ export default function Portfolio() {
       setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3000); // Changes every 3 seconds
     return () => clearInterval(textInterval);
-  },[]);
-
-  if (loading) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0f18]">
-        <motion.div animate={{ scale:[1, 1.2, 1], opacity:[0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 1.5 }} className="flex items-center gap-3">
-          <BrainCircuit size={48} className="text-blue-500" />
-          <span className="text-4xl font-black text-white tracking-tighter">KPS.</span>
-        </motion.div>
-      </div>
-    );
-  }
+  }, []);
 
   return (
-    <div className="bg-[#0a0f18] min-h-screen text-slate-200 selection:bg-blue-500/30 font-sans overflow-hidden">
-      
+    <div className="min-h-screen text-slate-200 selection:bg-blue-500/30 font-sans">
+
       {/* FIXED LEFT-EDGE SOCIALS (Hidden on mobile) */}
       <div className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-6 z-50">
-        {enhancedData.socials.map((social, idx) => (
-          <a key={idx} href={social.url} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-white hover:scale-110 transition-all drop-shadow-lg">
+        {enhancedData.socials.map((social) => (
+          <a
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={social.name}
+            className="text-slate-500 hover:text-white hover:scale-110 transition-all drop-shadow-lg"
+          >
             {social.icon}
           </a>
         ))}
         <div className="w-px h-24 bg-slate-800 mx-auto mt-4" />
       </div>
 
-      {/* 1. DYNAMIC HERO SECTION (Kashish Reference Vibe) */}
-      <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
+      {/* 1. HERO SECTION */}
+      <section id="home" className="relative min-h-screen flex items-center py-20">
         {/* Subtle Background Glow */}
         <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
-        
+
         <div className="max-w-[1200px] mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
-          
+
           {/* Left Text Column */}
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
-            
+
             {/* Availability Badge */}
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#111827] border border-slate-800 shadow-xl">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
@@ -187,14 +267,27 @@ export default function Portfolio() {
 
             {/* Main Greeting */}
             <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-none">
-              Hey, I'm <br className="hidden lg:block"/>
+              Hey, I&apos;m <br className="hidden lg:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold whitespace-nowrap">
                 KARTHIK PALYAKERE <br /> SURESH
               </span>
             </motion.h1>
 
+            {/* Role line: the keyword-dense sentence recruiters and search engines read */}
+            <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-slate-300 max-w-xl leading-relaxed">
+              {enhancedData.hero.tagline}. Building production RAG, multi-agent systems and
+              real-time vision pipelines. Published at ICCV 2025.
+            </motion.p>
+
+            <motion.div variants={fadeInUp} className="flex items-center gap-2 text-slate-400 text-sm font-medium">
+              <MapPin size={16} className="text-[#a8b1ff]" />
+              {enhancedData.hero.location}
+              <span className="text-slate-700">|</span>
+              Open to relocation across the EU
+            </motion.div>
+
             {/* Animated Rotating Subtitle */}
-            <motion.div variants={fadeInUp} className="h-10 text-xl sm:text-2xl font-mono font-bold text-slate-300 flex items-center">
+            <motion.div variants={fadeInUp} className="h-10 text-lg sm:text-xl font-mono font-bold text-slate-400 flex items-center">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={textIndex}
@@ -208,51 +301,75 @@ export default function Portfolio() {
               </AnimatePresence>
             </motion.div>
 
+            {/* Primary calls to action, above the fold */}
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-950 font-bold hover:bg-slate-200 transition-colors"
+              >
+                Download Resume <Download size={18} />
+              </a>
+              <a
+                href="mailto:Karthikps174@gmail.com"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] border border-slate-700 text-white font-bold hover:border-[#a8b1ff] transition-colors"
+              >
+                Get in Touch <Mail size={18} />
+              </a>
+            </motion.div>
+
             {/* Inline Navigation Menu */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold tracking-widest text-slate-400 pt-6">
+            <motion.nav variants={fadeInUp} aria-label="Section navigation" className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold tracking-widest text-slate-400 pt-6">
               {navItems.map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-white transition-colors">
                   {item}
                 </a>
               ))}
-            </motion.div>
+            </motion.nav>
 
           </motion.div>
 
           {/* Right Photo Column */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} 
-            animate={{ opacity: 1, scale: 1 }} 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, type: "spring", stiffness: 100 }}
             className="relative mx-auto w-full max-w-[350px] sm:max-w-[450px] aspect-square flex items-center justify-center mt-10 lg:mt-0"
           >
             {/* Outer Ring / Border Mask */}
             <div className="absolute inset-0 rounded-full border-[6px] border-[#1e293b] p-2 shadow-2xl">
               <div className="w-full h-full rounded-full overflow-hidden relative">
-                <img src={enhancedData.hero.photo} alt="Karthik Profile" className="w-full h-full object-cover" />
+                <Image
+                  src={enhancedData.hero.photo}
+                  alt="Karthik Palyakere Suresh, AI/ML Engineer"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 350px, 450px"
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0a0f18]/40 to-transparent" />
               </div>
             </div>
 
             {/* Floating Tag */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="absolute top-8 -left-4 sm:-left-12 z-20 px-5 py-3 rounded-xl bg-[#111827] border border-slate-700 shadow-2xl flex items-center gap-3"
             >
               <div className="w-3 h-3 rounded-full bg-[#8b5cf6]" />
-              <span className="text-white font-bold tracking-wide">CV / ML Engineer</span>
+              <span className="text-white font-bold tracking-wide">AI / ML Engineer</span>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* 2. ABOUT ME SECTION */}
-      <section id="about" className="py-24 relative bg-[#0d131f] border-y border-slate-800/50 scroll-mt-24">
+      <section id="about" className="py-24 relative bg-[#0d131f]/80 border-y border-slate-800/50 scroll-mt-24">
         <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-12 gap-12 items-start">
-          <div className="md:col-span-4 sticky top-32">
+          <div className="md:col-span-4 md:sticky md:top-32">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
-              Beyond the Code.
+              {enhancedData.about.title}
             </h2>
             <div className="w-16 h-1.5 bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] rounded-full" />
           </div>
@@ -267,10 +384,10 @@ export default function Portfolio() {
       </section>
 
       {/* 3. IMPACT METRICS */}
-      <section className="py-12 border-b border-slate-800/50 bg-[#0a0f18]">
-        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-800">
-          {enhancedData.metrics.map((m, i) => (
-            <div key={i} className={`pl-8 ${i === 0 ? 'pl-0 border-l-0' : ''}`}>
+      <section aria-label="Impact metrics" className="py-12 border-b border-slate-800/50">
+        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x md:divide-slate-800">
+          {enhancedData.metrics.map((m) => (
+            <div key={m.label} className="md:pl-8 md:first:pl-0">
               <div className="text-4xl md:text-5xl font-black text-white mb-2">{m.value}</div>
               <div className="text-sm font-bold text-[#a8b1ff] uppercase tracking-wider">{m.label}</div>
               <div className="text-sm text-slate-500 mt-1">{m.desc}</div>
@@ -280,65 +397,49 @@ export default function Portfolio() {
       </section>
 
       <div className="max-w-[1200px] mx-auto px-6 py-24 space-y-32">
-        
+
         {/* 4. EXPERIENCE SECTION */}
         <section id="experience" className="space-y-12 scroll-mt-24">
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Experience</h2>
           <div className="space-y-8">
-            {enhancedData.experience.map((exp, idx) => (
-              <motion.div key={idx} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative flex flex-col lg:flex-row gap-8 rounded-3xl bg-[#111827] border border-slate-800 p-8 transition-all hover:border-slate-600">
-                <div className="lg:w-1/3 shrink-0 overflow-hidden rounded-2xl relative h-56 lg:h-auto border border-slate-700/50">
-                  <img src={exp.image} alt={exp.company} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700" />
+            {enhancedData.experience.map((exp) => (
+              <motion.article key={exp.company} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative flex flex-col lg:flex-row gap-8 rounded-3xl bg-[#111827] border border-slate-800 p-8 transition-all hover:border-slate-600">
+                <div className={`lg:w-1/4 shrink-0 rounded-2xl relative border border-slate-700/50 bg-gradient-to-br ${exp.accent} flex items-center justify-center p-8 min-h-[140px]`}>
+                  <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 backdrop-blur-sm">
+                    {exp.icon}
+                  </div>
                 </div>
-                <div className="lg:w-2/3 flex flex-col justify-center">
+                <div className="lg:w-3/4 flex flex-col justify-center">
                   <div className="text-[#a8b1ff] font-mono text-sm font-bold w-fit mb-3">{exp.dates}</div>
                   <h3 className="text-3xl font-bold text-white mb-1">{exp.role}</h3>
                   <h4 className="text-xl text-slate-400 font-medium mb-6">{exp.company}</h4>
                   <ul className="space-y-3">
                     {exp.bullets.map((bullet, i) => (
                       <li key={i} className="flex items-start gap-4 text-slate-300 text-[1.05rem] leading-relaxed">
-                        <span className="text-[#e4a8ff] mt-1 font-bold">▹</span> {bullet}
+                        <span className="text-[#e4a8ff] mt-1 font-bold" aria-hidden="true">▹</span> {bullet}
                       </li>
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </section>
 
-        {/* 5. EDUCATION SECTION */}
-        <section id="education" className="space-y-12 scroll-mt-24">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Education</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {enhancedData.education.map((edu, idx) => (
-              <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 }} className="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[#111827] to-[#0d131f] border border-slate-800 relative overflow-hidden">
-                <GraduationCap className="text-[#a8b1ff] w-10 h-10 mb-6" />
-                <div className="text-slate-400 font-mono text-sm font-bold mb-3">{edu.dates}</div>
-                <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
-                <h4 className="text-lg text-slate-400 font-medium mb-6">{edu.institution}</h4>
-                <div className="w-full h-px bg-slate-800 mb-6" />
-                <p className="text-slate-300 text-sm leading-relaxed">{edu.bullets[0]}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* 6. PROJECTS SECTION */}
+        {/* 5. PROJECTS SECTION */}
         <section id="projects" className="space-y-12 scroll-mt-24">
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
             {enhancedData.projects.map((proj, idx) => {
+              // First two cards get an asymmetric 4/2 split; the rest sit on a 3/3 grid.
               let colSpan = "md:col-span-3";
               if (idx === 0) colSpan = "md:col-span-4";
               else if (idx === 1) colSpan = "md:col-span-2";
 
               return (
-                <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -5 }} className={`group relative rounded-3xl overflow-hidden border border-slate-800 bg-[#111827] min-h-[400px] flex flex-col justify-end ${colSpan}`}>
-                  <div className="absolute inset-0">
-                    <img src={proj.image} alt={proj.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f18] via-[#0a0f18]/80 to-transparent" />
-                  </div>
+                <motion.article key={proj.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -5 }} className={`group relative rounded-3xl overflow-hidden border border-slate-800 bg-[#111827] min-h-[360px] flex flex-col justify-end ${colSpan}`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${proj.accent} opacity-80 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f18] via-[#0a0f18]/70 to-transparent" />
                   <div className="relative p-8 z-10">
                     <div className="mb-4 bg-slate-800/80 p-3 rounded-xl w-fit backdrop-blur-md border border-slate-700">{proj.icon}</div>
                     <div className="text-xs font-bold tracking-widest text-[#a8b1ff] uppercase mb-2">{proj.category}</div>
@@ -346,14 +447,35 @@ export default function Portfolio() {
                     <ul className="space-y-2">
                       {proj.bullets.map((b, i) => (
                         <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
-                          <span className="text-[#e4a8ff] mt-0.5">▹</span> {b}
+                          <span className="text-[#e4a8ff] mt-0.5" aria-hidden="true">▹</span> {b}
                         </li>
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </motion.article>
               );
             })}
+          </div>
+        </section>
+
+        {/* 6. PUBLICATIONS SECTION */}
+        <section id="publications" className="space-y-12 scroll-mt-24">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Publications</h2>
+          <div className="space-y-4">
+            {enhancedData.publications.map((pub, idx) => (
+              <motion.div key={pub.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 p-6 md:p-8 rounded-3xl bg-[#111827] border border-slate-800 hover:border-slate-600 transition-colors">
+                <div className="flex items-center gap-4 sm:w-64 shrink-0">
+                  <div className="p-3 rounded-2xl bg-slate-800/80 border border-slate-700">
+                    <BookOpen className="w-5 h-5 text-[#a8b1ff]" />
+                  </div>
+                  <span className="font-mono text-sm font-bold text-[#a8b1ff]">{pub.venue}</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-1">{pub.title}</h3>
+                  <p className="text-slate-400 text-sm">{pub.note}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
@@ -364,15 +486,46 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {enhancedData.skills.map((skillGroup, idx) => (
-              <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="group p-8 rounded-3xl bg-[#111827] border border-slate-800 hover:border-slate-700 transition-colors">
+              <motion.div key={skillGroup.category} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }} className="group p-8 rounded-3xl bg-[#111827] border border-slate-800 hover:border-slate-700 transition-colors">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 rounded-2xl bg-slate-800/80 border border-slate-700">{skillGroup.icon}</div>
                   <h3 className="text-xl font-bold text-white">{skillGroup.category}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((item, i) => (
-                    <span key={i} className="px-3 py-1.5 text-sm rounded-lg bg-[#0a0f18] border border-slate-800 text-slate-300 group-hover:text-[#a8b1ff] transition-colors">{item}</span>
+                  {skillGroup.items.map((item) => (
+                    <span key={item} className="px-3 py-1.5 text-sm rounded-lg bg-[#0a0f18] border border-slate-800 text-slate-300 group-hover:text-[#a8b1ff] transition-colors">{item}</span>
                   ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* 8. EDUCATION + CERTIFICATIONS SECTION */}
+        <section id="education" className="space-y-12 scroll-mt-24">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Education &amp; Certifications</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {enhancedData.education.map((edu, idx) => (
+              <motion.div key={edu.degree} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 }} className="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[#111827] to-[#0d131f] border border-slate-800 relative overflow-hidden">
+                <GraduationCap className="text-[#a8b1ff] w-10 h-10 mb-6" />
+                <div className="text-slate-400 font-mono text-sm font-bold mb-3">{edu.dates}</div>
+                <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
+                <h4 className="text-lg text-slate-400 font-medium mb-6">{edu.institution}</h4>
+                <div className="w-full h-px bg-slate-800 mb-6" />
+                <p className="text-slate-300 text-sm leading-relaxed">{edu.bullets[0]}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {enhancedData.certifications.map((cert) => (
+              <motion.div key={cert.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center gap-5 p-6 rounded-2xl bg-[#111827] border border-slate-800 hover:border-slate-600 transition-colors">
+                <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700 shrink-0">
+                  <Award className="w-5 h-5 text-amber-300" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white leading-snug">{cert.name}</h3>
+                  <span className="text-sm text-slate-500 font-mono">{cert.year}</span>
                 </div>
               </motion.div>
             ))}
@@ -380,17 +533,18 @@ export default function Portfolio() {
         </section>
       </div>
 
-      {/* 8. MASSIVE "GET IN TOUCH" FOOTER */}
-      <section id="contact" className="relative py-32 bg-[#0a0f18] border-t border-slate-800 overflow-hidden flex flex-col items-center text-center scroll-mt-24">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-[#0a0f18] to-[#0a0f18] pointer-events-none" />
-        
+      {/* 9. GET IN TOUCH FOOTER */}
+      <section id="contact" className="relative py-32 border-t border-slate-800 flex flex-col items-center text-center scroll-mt-24">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent pointer-events-none" />
+
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-12">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-6xl sm:text-7xl md:text-8xl font-black leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase">
-              Let's Talk
+              Let&apos;s Talk
             </h2>
             <p className="text-xl md:text-2xl text-slate-400 mt-6 max-w-2xl mx-auto">
-              I am currently looking for full-time opportunities. Whether you have a question or just want to say hi, my inbox is always open.
+              I am currently looking for full-time AI/ML Engineer and Data Scientist roles in Germany and the EU.
+              Whether you have a question or just want to say hi, my inbox is always open.
             </p>
           </motion.div>
 
@@ -404,22 +558,22 @@ export default function Portfolio() {
           </div>
 
           <div className="pt-16 flex flex-wrap justify-center gap-6">
-            {enhancedData.socials.map((social, idx) => (
-              <a key={idx} href={social.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-[#a8b1ff] hover:bg-slate-900 transition-all font-medium">
+            {enhancedData.socials.map((social) => (
+              <a key={social.name} href={social.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-[#a8b1ff] hover:bg-slate-900 transition-all font-medium">
                 {social.icon} {social.name}
               </a>
             ))}
           </div>
 
           <div className="pt-24 flex flex-col items-center gap-8">
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] border border-slate-800 text-slate-400 hover:text-white hover:border-[#a8b1ff] transition-all font-mono text-sm tracking-widest uppercase group shadow-lg"
             >
               Back to Top <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
             </button>
             <div className="text-slate-600 text-sm font-mono tracking-widest uppercase">
-              © {new Date().getFullYear()} Karthik Palyakere Suresh.
+              © {COPYRIGHT_YEAR} Karthik Palyakere Suresh.
             </div>
           </div>
         </div>
