@@ -7,7 +7,7 @@ import {
   Download, Mail, Cpu, BrainCircuit, Network, Layers, Target,
   Microscope, Code2, Globe, Github, Linkedin, Instagram,
   GraduationCap, Camera, ArrowUp, MapPin, BookOpen, Award,
-  Bot, Database, Gauge
+  Bot, Database, Gauge, CheckCircle2, ExternalLink
 } from "lucide-react";
 
 
@@ -17,6 +17,7 @@ const enhancedData = {
     photo: "/profile.PNG",
     location: "Mannheim, Germany",
     tagline: "AI/ML Engineer — Computer Vision, Generative AI & Agentic Systems",
+    proof: ["ICCV 2025 Published", "Merck Group", "DFKI", "Oracle OCI Certified"],
   },
 
   about: {
@@ -76,12 +77,12 @@ const enhancedData = {
       accent: "from-emerald-500/20 via-teal-500/10 to-transparent",
       icon: <Microscope className="w-7 h-7 text-emerald-300" />,
       bullets: [
-        "Developed and evaluated machine learning and deep learning models for high-resolution SEM and TEM microscopy data, working with structured and unstructured scientific datasets.",
-        "Fine-tuned and evaluated foundation and computer vision models including Mask R-CNN, YOLOv11, SAM2 and SAM3 for instance segmentation and image understanding.",
         "Architected end-to-end, scalable ML pipelines on AWS with containerized model serving using Docker, improving inference latency by 40% for high-resolution imagery.",
         "Engineered production-ready AI workflows with CI/CD automation, reducing deployment cycles by 50% and enabling continuous model evaluation through feedback loops.",
         "Prototyped LLM-based information extraction and knowledge retrieval workflows using RAG, embeddings, vector similarity search and semantic retrieval.",
+        "Fine-tuned and evaluated foundation and computer vision models including Mask R-CNN, YOLOv11, SAM2 and SAM3 for instance segmentation and image understanding.",
         "Developed synthetic data generation pipelines that improved model generalization and reduced overfitting by 35%, addressing limited labelled data challenges.",
+        "Developed and evaluated machine learning and deep learning models for high-resolution SEM and TEM microscopy data, working with structured and unstructured scientific datasets.",
         "Evaluated model performance across latency, throughput, memory consumption and prediction quality, including mixed-precision inference benchmarking against FP32 baselines.",
         "Collaborated with interdisciplinary research, engineering and domain teams in agile environments, translating research problems into scalable AI solutions.",
       ],
@@ -96,10 +97,10 @@ const enhancedData = {
         "Designed and deployed a real-time multi-sensor perception system for robotic platforms, achieving 92% detection accuracy in autonomous scenarios.",
         "Developed ROS2-based perception nodes for synchronized camera streams and object detection on Jetson embedded hardware, achieving sub-200ms inference latency.",
         "Implemented low-light and degraded-vision enhancement pipelines, improving object detection mAP50 by 15% in challenging environments.",
+        "Published peer-reviewed research at ICCV 2025 demonstrating scalable, production-ready perception systems.",
         "Optimized PyTorch models for production deployment, focusing on inference performance, memory efficiency and real-time constraints in resource-limited environments.",
         "Built modular ML components and scalable data processing pipelines for structured and unstructured sensor data, ensuring robustness and reproducibility across distributed systems.",
         "Developed monitoring and logging infrastructure for deployed AI services, enabling continuous performance tracking and automated alerting.",
-        "Published peer-reviewed research at ICCV 2025 demonstrating scalable, production-ready perception systems.",
       ],
     },
   ],
@@ -108,17 +109,41 @@ const enhancedData = {
     {
       title: "Enterprise Multimodal Agentic RAG Platform",
       category: "Agentic AI & Generative AI",
+      impact: "Citation-verified answers with a YOLO ↔ VLM cross-check",
+      stack: ["LangGraph", "LangChain", "NVIDIA NIM", "ChromaDB", "BM25 + RRF", "Reranking", "YOLO", "LangSmith"],
+      links: [{ label: "Code", url: "https://github.com/Karthikps84/multimodal-rag" }],
       accent: "from-purple-600/25 via-indigo-600/10 to-transparent",
       bullets: [
         "Designed a multimodal, multi-agent RAG platform using LangGraph and LangChain to process and retrieve information from documents, images and tables.",
-        "Implemented agentic orchestration and semantic retrieval using LLMs, embeddings, vector databases, hybrid search and reranking.",
-        "Delivered context-aware, grounded and reliable responses over structured and unstructured enterprise data.",
+        "Built a Supervisor and Planner architecture with a typed shared state, parallel or sequential step execution, citation verification, and a reflection loop that retries low-confidence answers.",
+        "Implemented hybrid retrieval fusing ChromaDB dense vectors with BM25 via reciprocal rank fusion, then reranking, with a pymupdf4llm to Docling OCR fallback for scanned or table-heavy PDFs.",
+        "Added a vision cross-check that compares a VLM's object count against YOLO detections, plus Llama 3.1 and Nemotron VL model routing, multi-layer caching and LangSmith tracing.",
       ],
       icon: <Bot className="text-purple-300" />,
     },
     {
+      title: "TorchAdapt: Light-Agnostic Perception (ICCV 2025)",
+      category: "Peer-Reviewed CV Research",
+      impact: "ICCV 2025 · 80.1 mAP50 on ExDark · +15% in low light",
+      stack: ["PyTorch", "U-Net", "YOLOv3", "RetinaNet", "RTMDet-tiny", "DeepLabV3+"],
+      links: [
+        { label: "Paper", url: "https://ieeexplore.ieee.org/document/11446114/" },
+        { label: "Code", url: "https://github.com/Karthikps84/Low-light-enhancement" },
+      ],
+      accent: "from-rose-500/25 via-pink-600/10 to-transparent",
+      bullets: [
+        "Published real-time light-agnostic visual perception research evaluated on Exdark, LIS and Darkface datasets.",
+        "Engineered a U-Net-based enhancement pipeline integrated with RTMDet-tiny, YOLOv3 and DeepLabV3+, improving mAP50 by 15%.",
+        "Benchmarked on dark-image datasets, reaching 92% accuracy through systematic optimization.",
+        "Released configs and checkpoints for detection (YOLOv3, 80.1 mAP50 on ExDark), face detection (RetinaNet, 53.7 mAP50 on DarkFace) and instance segmentation (RTMDet-tiny, 61.1 mAP on LIS).",
+      ],
+      icon: <Target className="text-rose-300" />,
+    },
+    {
       title: "Real-Time Multi-Camera Perception System",
       category: "Robotics & Edge Deployment",
+      impact: "4 streams · 30 FPS · sub-200ms latency",
+      stack: ["ROS2", "Jetson", "DeepSORT", "PyTorch"],
       accent: "from-amber-500/25 via-orange-600/10 to-transparent",
       bullets: [
         "Built a real-time perception pipeline processing 4 camera streams at 30 FPS with object detection, DeepSORT tracking and ROS2 communication.",
@@ -127,19 +152,10 @@ const enhancedData = {
       icon: <Camera className="text-amber-300" />,
     },
     {
-      title: "TorchAdapt: Light-Agnostic Perception (ICCV 2025)",
-      category: "Peer-Reviewed CV Research",
-      accent: "from-rose-500/25 via-pink-600/10 to-transparent",
-      bullets: [
-        "Published real-time light-agnostic visual perception research evaluated on Exdark, LIS and Darkface datasets.",
-        "Engineered a U-Net-based enhancement pipeline integrated with RTMDet-tiny, YOLOv3 and DeepLabV3+, improving mAP50 by 15%.",
-        "Benchmarked on dark-image datasets, reaching 92% accuracy through systematic optimization.",
-      ],
-      icon: <Target className="text-rose-300" />,
-    },
-    {
       title: "CLIP–DINO Hybrid Vision Transformer",
       category: "Multimodal Foundation Models",
+      impact: "Zero-shot recognition served in sub-200ms",
+      stack: ["CLIP", "DINO", "FastAPI", "Docker", "CI/CD"],
       accent: "from-cyan-500/25 via-sky-600/10 to-transparent",
       bullets: [
         "Developed a hybrid vision foundation model combining self-supervised (DINO) and language-aligned (CLIP) representations for zero-shot object recognition.",
@@ -150,6 +166,8 @@ const enhancedData = {
     {
       title: "Master Thesis: Automated SEM Nanoparticle Segmentation",
       category: "Deep Learning & Microscopy",
+      impact: "91.3% mAP on 1,327 SEM images",
+      stack: ["YOLOv11", "Mask R-CNN", "SAM2"],
       accent: "from-teal-500/25 via-emerald-600/10 to-transparent",
       bullets: [
         "Curated a heterogeneous dataset of 1,327 SEM images to benchmark YOLOv11L-Seg, Mask R-CNN and SAM2.",
@@ -161,6 +179,8 @@ const enhancedData = {
     {
       title: "CNN Quantization and Optimization Pipeline",
       category: "Model Optimization & MLOps",
+      impact: "2-3x faster inference, controlled accuracy loss",
+      stack: ["PTQ", "QAT", "INT8", "FP16"],
       accent: "from-violet-500/25 via-fuchsia-600/10 to-transparent",
       bullets: [
         "Applied Post-Training Quantization (PTQ) and Quantization-Aware Training (QAT) with mixed-precision strategies (INT8/FP16).",
@@ -175,6 +195,7 @@ const enhancedData = {
       venue: "ICCV 2025",
       title: "TorchAdapt: Towards Light-Agnostic Real-Time Visual Perception",
       note: "Peer-reviewed. Real-time perception robust to arbitrary illumination conditions.",
+      url: "https://ieeexplore.ieee.org/document/11446114/",
     },
     {
       venue: "IJSRD, Vol. 7, Issue 6, 2022",
@@ -218,6 +239,101 @@ const COPYRIGHT_YEAR = new Date().getFullYear();
 
 const navItems = ["ABOUT", "EXPERIENCE", "PROJECTS", "PUBLICATIONS", "SKILLS", "EDUCATION", "CONTACT"];
 
+// Bolds quantified results so a recruiter skimming for numbers finds them.
+const METRIC_PATTERN = /(sub-200ms|\b\d+(?:[-–]\d+)?(?:,\d{3})*(?:\.\d+)?\s?(?:%|(?:x|ms|FPS)\b))/;
+
+function Highlight({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(METRIC_PATTERN).map((part, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="text-white font-semibold">{part}</strong>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
+
+const VISIBLE_BULLETS = 4;
+
+function ExperienceCard({ exp }: { exp: (typeof enhancedData.experience)[number] }) {
+  const [expanded, setExpanded] = useState(false);
+  const extra = exp.bullets.length - VISIBLE_BULLETS;
+
+  return (
+    <motion.article initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative flex flex-col lg:flex-row gap-8 rounded-3xl bg-[#111827] border border-slate-800 p-8 transition-all hover:border-slate-600">
+      <div className={`lg:w-1/4 shrink-0 rounded-2xl relative border border-slate-700/50 bg-gradient-to-br ${exp.accent} flex items-center justify-center p-8 min-h-[140px]`}>
+        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 backdrop-blur-sm">
+          {exp.icon}
+        </div>
+      </div>
+      <div className="lg:w-3/4 flex flex-col justify-center">
+        <div className="text-[#a8b1ff] font-mono text-sm font-bold w-fit mb-3">{exp.dates}</div>
+        <h3 className="text-3xl font-bold text-white mb-1">{exp.role}</h3>
+        <h4 className="text-xl text-slate-400 font-medium mb-6">{exp.company}</h4>
+        <ul className="space-y-3">
+          {exp.bullets.map((bullet, i) => (
+            // Extra bullets stay in the DOM (hidden) so crawlers still read them.
+            <li key={i} className={`flex items-start gap-4 text-slate-300 text-[1.05rem] leading-relaxed ${!expanded && i >= VISIBLE_BULLETS ? "hidden" : ""}`}>
+              <span className="text-[#e4a8ff] mt-1 font-bold" aria-hidden="true">▹</span>
+              <span><Highlight text={bullet} /></span>
+            </li>
+          ))}
+        </ul>
+        {extra > 0 && (
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            className="mt-6 w-fit text-sm font-bold text-[#a8b1ff] hover:text-white transition-colors"
+          >
+            {expanded ? "Show less" : `Show ${extra} more`}
+          </button>
+        )}
+      </div>
+    </motion.article>
+  );
+}
+
+// Sticky bar that appears after the hero so the resume is always one click away.
+function TopBar() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 500);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.header
+          initial={{ y: -80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -80, opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed top-0 inset-x-0 z-40 border-b border-slate-800 bg-[#0a0f18]/85 backdrop-blur-md"
+        >
+          <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between gap-6">
+            <a href="#home" className="text-lg font-black tracking-tighter text-white">KPS.</a>
+            <nav aria-label="Primary" className="hidden md:flex gap-6 text-xs font-bold tracking-widest text-slate-400">
+              {["EXPERIENCE", "PROJECTS", "PUBLICATIONS", "SKILLS", "CONTACT"].map((item) => (
+                <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-white transition-colors">{item}</a>
+              ))}
+            </nav>
+            <a href="/resume.pdf" download className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-slate-950 text-sm font-bold hover:bg-slate-200 transition-colors">
+              Resume <Download size={14} />
+            </a>
+          </div>
+        </motion.header>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function Portfolio() {
   const [textIndex, setTextIndex] = useState(0);
 
@@ -231,6 +347,7 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen text-slate-200 selection:bg-blue-500/30 font-sans">
+      <TopBar />
 
       {/* FIXED LEFT-EDGE SOCIALS (Hidden on mobile) */}
       <div className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-6 z-50">
@@ -266,9 +383,9 @@ export default function Portfolio() {
             </motion.div>
 
             {/* Main Greeting */}
-            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-none">
+            <motion.h1 variants={fadeInUp} className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-none">
               Hey, I&apos;m <br className="hidden lg:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold whitespace-nowrap">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8b1ff] to-[#e4a8ff] font-bold sm:whitespace-nowrap">
                 KARTHIK PALYAKERE <br /> SURESH
               </span>
             </motion.h1>
@@ -282,8 +399,6 @@ export default function Portfolio() {
             <motion.div variants={fadeInUp} className="flex items-center gap-2 text-slate-400 text-sm font-medium">
               <MapPin size={16} className="text-[#a8b1ff]" />
               {enhancedData.hero.location}
-              <span className="text-slate-700">|</span>
-              Open to relocation across the EU
             </motion.div>
 
             {/* Animated Rotating Subtitle */}
@@ -316,7 +431,25 @@ export default function Portfolio() {
               >
                 Get in Touch <Mail size={18} />
               </a>
+              <a
+                href="https://linkedin.com/in/karthikps84"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] border border-slate-700 text-white font-bold hover:border-[#a8b1ff] transition-colors"
+              >
+                LinkedIn <Linkedin size={18} />
+              </a>
             </motion.div>
+
+            {/* Proof strip: the credentials a recruiter looks for in the first seconds */}
+            <motion.ul variants={fadeInUp} className="flex flex-wrap gap-2 pt-2">
+              {enhancedData.hero.proof.map((item) => (
+                <li key={item} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#111827] border border-slate-800 text-xs font-semibold text-slate-300">
+                  <CheckCircle2 size={14} className="text-emerald-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </motion.ul>
 
             {/* Inline Navigation Menu */}
             <motion.nav variants={fadeInUp} aria-label="Section navigation" className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold tracking-widest text-slate-400 pt-6">
@@ -403,25 +536,7 @@ export default function Portfolio() {
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-16">Experience</h2>
           <div className="space-y-8">
             {enhancedData.experience.map((exp) => (
-              <motion.article key={exp.company} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative flex flex-col lg:flex-row gap-8 rounded-3xl bg-[#111827] border border-slate-800 p-8 transition-all hover:border-slate-600">
-                <div className={`lg:w-1/4 shrink-0 rounded-2xl relative border border-slate-700/50 bg-gradient-to-br ${exp.accent} flex items-center justify-center p-8 min-h-[140px]`}>
-                  <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 backdrop-blur-sm">
-                    {exp.icon}
-                  </div>
-                </div>
-                <div className="lg:w-3/4 flex flex-col justify-center">
-                  <div className="text-[#a8b1ff] font-mono text-sm font-bold w-fit mb-3">{exp.dates}</div>
-                  <h3 className="text-3xl font-bold text-white mb-1">{exp.role}</h3>
-                  <h4 className="text-xl text-slate-400 font-medium mb-6">{exp.company}</h4>
-                  <ul className="space-y-3">
-                    {exp.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-4 text-slate-300 text-[1.05rem] leading-relaxed">
-                        <span className="text-[#e4a8ff] mt-1 font-bold" aria-hidden="true">▹</span> {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.article>
+              <ExperienceCard key={exp.company} exp={exp} />
             ))}
           </div>
         </section>
@@ -443,7 +558,8 @@ export default function Portfolio() {
                   <div className="relative p-8 z-10">
                     <div className="mb-4 bg-slate-800/80 p-3 rounded-xl w-fit backdrop-blur-md border border-slate-700">{proj.icon}</div>
                     <div className="text-xs font-bold tracking-widest text-[#a8b1ff] uppercase mb-2">{proj.category}</div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{proj.title}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2">{proj.title}</h3>
+                    <p className="text-[#e4a8ff] text-sm font-semibold mb-4">{proj.impact}</p>
                     <ul className="space-y-2">
                       {proj.bullets.map((b, i) => (
                         <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
@@ -451,6 +567,21 @@ export default function Portfolio() {
                         </li>
                       ))}
                     </ul>
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {proj.stack.map((t) => (
+                        <span key={t} className="px-2.5 py-1 text-xs rounded-md bg-slate-900/70 border border-slate-700 text-slate-300">{t}</span>
+                      ))}
+                    </div>
+                    {proj.links && (
+                      <div className="flex flex-wrap gap-3 mt-5">
+                        {proj.links.map((l) => (
+                          <a key={l.label} href={l.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 border border-slate-600 text-sm font-semibold text-white hover:bg-white hover:text-slate-950 transition-colors">
+                            {l.label === "Code" ? <Github size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}
+                            {l.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </motion.article>
               );
@@ -471,7 +602,15 @@ export default function Portfolio() {
                   <span className="font-mono text-sm font-bold text-[#a8b1ff]">{pub.venue}</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-1">{pub.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-1">
+                    {pub.url ? (
+                      <a href={pub.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-[#a8b1ff] transition-colors">
+                        {pub.title} <ExternalLink size={16} aria-hidden="true" />
+                      </a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
                   <p className="text-slate-400 text-sm">{pub.note}</p>
                 </div>
               </motion.div>

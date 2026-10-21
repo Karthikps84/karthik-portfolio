@@ -116,6 +116,11 @@ const personSchema = {
     "Instance Segmentation",
   ],
   knowsLanguage: ["English", "German"],
+  subjectOf: {
+    "@type": "ScholarlyArticle",
+    name: "TorchAdapt: Towards Light-Agnostic Real-Time Visual Perception",
+    url: "https://ieeexplore.ieee.org/document/11446114/",
+  },
   sameAs: [
     "https://linkedin.com/in/karthikps84",
     "https://github.com/karthikps84",
